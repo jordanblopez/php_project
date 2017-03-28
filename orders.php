@@ -97,7 +97,7 @@ include("auth.php");
                       <p class=""><?php
                          $status = $row["completed"];
                          if ($status == 0) {?>
-                           <a href="bar_action.php?action=completeOrder&pid=<?php echo $row["product_id"]; ?>&uid=<?php echo $row["user_id"]?>&oid=<?php echo $row["order_id"]?>" class="btn btn-success" onclick=""><i class="fa fa-check" aria-hidden="true">Mark Complete</i></a>
+                           <a href="barAction.php?action=completeOrder&pid=<?php echo $row["product_id"]; ?>&uid=<?php echo $row["user_id"]?>&oid=<?php echo $row["order_id"]?>" class="btn btn-success" onclick=""><i class="fa fa-check" aria-hidden="true">Mark Complete</i></a>
                         <?php   } else {
                            echo "<span class='badge badge-success'>Complete</span>";
                          };

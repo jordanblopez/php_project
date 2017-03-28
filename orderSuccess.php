@@ -12,40 +12,49 @@ include 'auth.php';
   </head>
   <body>
     <div class="container">
+      <!-- NavBar -->
       <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Tsarbucks</a>
+        <a class="navbar-brand" href="cust_home.php"></a><i class="fa fa-star fa-2x" aria-hidden="true"></i>Tsarbucks</a>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="cust_home.php">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="menu.php">Menu</a>
+            <a class="nav-link" href="cust_home.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="myOrders.php">My Orders</a>
+            <a class="nav-link" href="menu.php"><i class="fa fa-list" aria-hidden="true"></i> Menu</a>
           </li>
-        </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="myOrders.php"><i class="fa fa-coffee" aria-hidden="true"></i> My Orders</a>
+          </li>
+                </ul>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="viewCart.php">My Cart</a>
+          <span class="navbar-text">
+            <?php echo $_SESSION['username'] ?>
+          </span>
+          <li class="nav-item active">
+            <a class="nav-link" href="viewCart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
+            <a class="nav-link" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
           </li>
         </ul>
       </nav>
 
-      <!--Heading-->
-      <div class="row justify-content-center">
-        <div class="col-md-9">
-          <h1 class="display-3" id="displayTitle">Order Placed!</h1>
+      <!-- Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="display-1 text-center"> Order Placed!</h1>
         </div>
       </div>
 
-        <a href="menu.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Place Another Order</a>
-        <a href="myOrders.php" class="btn btn-primary"></i> View Orders</a>
-
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <a href="myOrders.php" class="btn btn-info"><i class="fa fa-coffee" aria-hidden="true"></i> View My Orders</a>
+          <a href="menu.php" class="btn btn-secondary"><i class="fa fa-list" aria-hidden="true"></i> View Item Menu</a>
+        </div>
+      </div>
     </div>
+  </body>
+</html>

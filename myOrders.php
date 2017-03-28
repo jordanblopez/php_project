@@ -17,38 +17,42 @@ include 'auth.php';
 </head>
 <body>
 <div class="container">
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Tsarbucks</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="cust_home.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="menu.php">Menu</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="myOrders.php">My Orders</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="viewCart.php">My Cart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="logout.php">Logout</a>
-      </li>
-    </ul>
-  </nav>
+    <!-- NavBar -->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="cust_home.php"></a><i class="fa fa-star fa-2x" aria-hidden="true"></i>Tsarbucks</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="cust_home.php"><i class="fa fa-home" aria-hidden="true"></i>Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="menu.php"><i class="fa fa-list" aria-hidden="true"></i> Menu</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="myOrders.php"><i class="fa fa-coffee" aria-hidden="true"></i> My Orders<span class="sr-only">(current)</span></a>
+        </li>
+              </ul>
+      <ul class="navbar-nav">
+        <span class="navbar-text">
+          <?php echo $_SESSION['username'] ?>
+        </span>
+        <li class="nav-item">
+          <a class="nav-link" href="viewCart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+        </li>
+      </ul>
+    </nav>
 
-  <!--Heading-->
-  <div class="row justify-content-center">
-    <div class="col-md-9">
-      <h1 class="display-3" id="displayTitle">My Orders</h1>
+    <!-- Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="display-1 text-center"> My Orders <br /></h1>
+      </div>
     </div>
-  </div>
 
   <?php $query = $con->query("SELECT a.display_name, a.price, a.size, b.quantity, b.completed, b.order_id FROM products a JOIN orders b ON a.product_id = b.product_id WHERE b.user_id = '".$_SESSION['sessCustomerID']."'ORDER BY b.order_id DESC");
 
@@ -74,8 +78,8 @@ include 'auth.php';
                 </tr>
                 <tr>
                   <th><h2 class="display-7">Product Name</h2></th>
-                  <th><h2 class="display-7">Price</h2></th>
                   <th><h2 class="display-7">Size</h2></th>
+                  <th><h2 class="display-7">Price</h2></th>
                   <th><h2 class="display-7">Qty</h2></th>
                   <th><h2 class="display-7">Status</h2></th>
                   <th><h2 class="display-7">Subtotal</h2></th>
@@ -83,10 +87,8 @@ include 'auth.php';
               </thread>
               <tfoot>
                 <tr>
-                  <th> </th>
-                  <th> </th>
-                  <th> </th>
-                  <th> </th>
+              
+                  <th colspan="4"> </th>
                   <th><h2 class="display-7">Total: </h2></th>
                   <th><h2 class="display-7"><?php
                   $orderTotals = $con->query("SELECT SUM(a.price * b.quantity) AS total, b.order_id, b.user_id,b.product_id FROM products a JOIN orders b ON a.product_id = b.product_id GROUP BY
@@ -110,13 +112,13 @@ include 'auth.php';
               <tbody>
                 <tr>
                   <td class="align-middle">
-                     <h5 class=""><?php echo $row["display_name"]; ?></h5>
-                  </td>
-                  <td class="align-middle">
-                     <p class="lead"><?php echo '$'.$row["price"]; ?></p>
+                     <h5><?php echo $row["display_name"]; ?></h5>
                   </td>
                   <td class="align-middle">
                      <p class=""><?php echo  $row["size"]; ?></p>
+                  </td>
+                  <td class="align-middle">
+                     <p class="lead"><?php echo '$'.$row["price"]; ?></p>
                   </td>
                   <td class="align-middle">
                      <p class=""><?php echo  $row["quantity"]; ?></p>

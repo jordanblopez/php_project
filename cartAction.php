@@ -20,7 +20,7 @@ if (isset($_REQUEST['action']) && !empty($_REQUEST['action'])) {
        );
 
 
-       $insertItem = $cart->insert($itemData);
+       $insertItem = $cart->insert_item($itemData);
        $redirectLoc = $insertItem?'viewCart.php':'cust_home.php';
 
        header("Location: ".$redirectLoc);
@@ -30,10 +30,10 @@ if (isset($_REQUEST['action']) && !empty($_REQUEST['action'])) {
             'qty' => $_REQUEST['qty']
         );
 
-        $updateItem = $cart->update($itemData);
+        $updateItem = $cart->update_cart($itemData);
         echo $updateItem?'ok':'err';die;
     }elseif($_REQUEST['action'] == 'removeCartItem' && !empty($_REQUEST['id'])){
-        $deleteItem = $cart->remove($_REQUEST['id']);
+        $deleteItem = $cart->remove_item($_REQUEST['id']);
         header("Location: viewCart.php");
     }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])){
         // insert order details into database
@@ -54,7 +54,7 @@ if (isset($_REQUEST['action']) && !empty($_REQUEST['action'])) {
           $insertOrderItems = $con->multi_query($sql);
 
           if($insertOrderItems){
-              $cart->destroy();
+              $cart->destroy_cart();
               header("Location: orderSuccess.php?id=$orderID");
           }else{
             var_dump($cartItems);
